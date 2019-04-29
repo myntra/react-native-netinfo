@@ -45,15 +45,27 @@ def getExtOrIntegerDefault(name) {
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
-  buildToolsVersion getExtOrDefault('buildToolsVersion')
+  compileSdkVersion versions.compileSdk
+  buildToolsVersion versions.buildTools
 
   defaultConfig {
-    minSdkVersion getExtOrIntegerDefault('minSdkVersion')
-    targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+    minSdkVersion versions.minSdk
+    targetSdkVersion versions.targetSdk
   }
   lintOptions{
     abortOnError false
+  }
+
+  buildTypes {
+    debug {}
+    qa {}
+    fox {}
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    sourceSets {}
+    splits {}
   }
 }
 
@@ -65,5 +77,5 @@ repositories {
 
 dependencies {
   //noinspection GradleDynamicVersion
-  api 'com.facebook.react:react-native:+'
+  implementation 'com.facebook.react:react-native:+'
 }
