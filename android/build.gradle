@@ -69,5 +69,5 @@ repositories {
 
 dependencies {
   //noinspection GradleDynamicVersion
-  implementation 'com.facebook.react:react-native:+'
+  implementation project(':react-native')
 }
